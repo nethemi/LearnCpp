@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnCpp.App">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            <!--#region Colors-->
+            <Color x:Key="Header">#f3f4f4</Color>
+            <Color x:Key="Accent">#7766C6</Color>
+            <Color x:Key="Primary">#E0DFFD</Color>
+            <Color x:Key="Txt">#46467A</Color>
+            <Color x:Key="TxtLight">#151524</Color>
+            <Color x:Key="Unselected">#9E9E9E</Color>
+
+            <Color x:Key="BGdark">#1C1C1C</Color>
+            <Color x:Key="HeaderDark">#303030</Color>
+            <Color x:Key="TxtDark">#FFFFFF</Color>
+            <!--#endregion-->
+
+            <!--#region  Buttons-->
+            <Style TargetType="Button" x:Key="settingBtn">
+                <Setter Property="FontFamily" Value="Roboto"/>
+                <Setter Property="TextTransform" Value="None"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding 
+                    Dark={StaticResource TxtDark}, 
+                    Light={StaticResource TxtLight}}"/>
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="BorderColor" Value="Transparent"/>
+                <Setter Property="BorderWidth" Value="0"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+
+            <Style x:Key="mainBtn" TargetType="Button">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Roboto"/>
+                <Setter Property="WidthRequest" Value="256"/>
+                <Setter Property="HeightRequest" Value="42"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="TextColor" Value="{StaticResource Accent}"/>
+                <Setter Property="BorderColor" Value="{StaticResource Accent}"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="CornerRadius" Value="4"/>
+                <Style.Triggers>
+                    <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="{StaticResource Primary}"/>
+                        <Setter Property="TextColor" Value="{StaticResource Accent}"/>
+                        <Setter Property="BorderColor" Value="{StaticResource Primary}"/>
+                    </Trigger>
+                    <Trigger TargetType="Button" Property="IsPressed" Value="False">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="TextColor" Value="{StaticResource Accent}"/>
+                        <Setter Property="BorderColor" Value="{StaticResource Accent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="choiceBtn" TargetType="Button">
+                <Setter Property="FontFamily" Value="Roboto"/>
+                <Setter Property="WidthRequest" Value="320"/>
+                <Setter Property="HeightRequest" Value="140"/>
+                <Setter Property="TextTransform" Value="None"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="Background" Value="{AppThemeBinding 
+                    Dark={StaticResource HeaderDark}, 
+                    Light={StaticResource Header}}"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding 
+                    Dark={StaticResource TxtDark}, 
+                    Light={StaticResource Txt}}"/>
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="BorderColor" Value="Transparent"/>
+                <Setter Property="CornerRadius" Value="16"/>
+                <Setter Property="BorderWidth" Value="0"/>
+                <Style.Triggers>
+                    <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                        <Setter Property="Background" Value="{StaticResource Primary}"/>
+                        <Setter Property="TextColor" Value="{StaticResource Accent}"/>
+                        <Setter Property="TextTransform" Value="None"/>
+                    </Trigger>
+                    <Trigger TargetType="Button" Property="IsPressed" Value="False">
+                        <Setter Property="Background" Value="{AppThemeBinding 
+                    Dark={StaticResource HeaderDark}, 
+                    Light={StaticResource Header}}"/>
+                        <Setter Property="TextColor" Value="{AppThemeBinding 
+                    Dark={StaticResource TxtDark}, 
+                    Light={StaticResource Txt}}"/>
+                        <Setter Property="TextTransform" Value="None"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!--#endregion-->
+            
+            <!--#region Txt-->
+            <Style x:Key="normalTxt" TargetType="Label">
+                <Setter Property="FontFamily" Value="Courier New"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding 
+                    Dark={StaticResource Primary}, 
+                    Light={StaticResource Unselected}}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="titleTxt" TargetType="Label">
+                <Setter Property="FontFamily" Value="Courier New"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding 
+                    Dark={StaticResource Primary}, 
+                    Light={StaticResource Txt}}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="searchBox" TargetType="SearchBar">
+                <Setter Property="Placeholder" Value="搜索 Введите слово"/>
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding 
+                    Dark={StaticResource Primary}, 
+                    Light={StaticResource Unselected}}"/>
+                <Setter Property="FontFamily" Value="OpenSansRegular"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding 
+                    Dark={StaticResource TxtDark}, 
+                    Light={StaticResource Txt}}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="TextTransform" Value="Lowercase"/>
+            </Style>
+
+            <Style x:Key="topicTxt" TargetType="Label">
+                <Setter Property="FontFamily" Value="Courier New"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource Accent}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            </Style>
+
+            <Style x:Key="lectureTxt" TargetType="Label">
+                <Setter Property="FontFamily" Value="Courier New"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding 
+                    Dark={StaticResource TxtDark}, 
+                    Light={StaticResource TxtLight}}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            </Style>
+            <!--#endregion-->
+            
+            <!--#region others-->
+            <Style x:Key="boxes" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="BorderColor" Value="{StaticResource Accent}"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="CornerRadius" Value="4"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="48"/>
+            </Style>
+
+            <Style x:Key="Separator" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Color" Value="{StaticResource Primary}" />
+                <Setter Property="Margin" Value="0, 5, 0, 5" />
+                <Setter Property="Opacity" Value="0.5" />
+            </Style>
+
+            <ControlTemplate x:Key="ThemeRadioTemplate">
+                <StackLayout Orientation="Horizontal" Margin="4">
+                    <Grid   HeightRequest="30"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Start"
+                            WidthRequest="30">
+                        <Ellipse x:Name="CircleBtn"
+                                Fill="Transparent"
+                                HeightRequest="20"
+                                HorizontalOptions="Center"
+                                Stroke="{StaticResource Accent}"
+                                StrokeThickness="2"
+                                VerticalOptions="Center"
+                                WidthRequest="20" />
+                        <Ellipse x:Name="Check"
+                                BackgroundColor="Transparent"
+                                Fill="{StaticResource Accent}"
+                                HeightRequest="10"
+                                HorizontalOptions="Center"
+                                Stroke="{StaticResource Accent}"
+                                StrokeThickness="0"
+                                VerticalOptions="Center"
+                                WidthRequest="10" />
+                    </Grid>
+                    <ContentPresenter VerticalOptions="Center"/>
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CheckedStates">
+                                <VisualState x:Name="Checked">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="Check" Property="Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="Check" Property="Opacity" Value="0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </StackLayout>
+            </ControlTemplate>
+            
+            <!--#endregion-->
+
+        </ResourceDictionary>        
+    </Application.Resources>
+   
+</Application>

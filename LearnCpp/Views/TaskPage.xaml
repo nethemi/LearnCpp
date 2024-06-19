@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnCpp.Views.TaskPage"
+             xmlns:local="clr-namespace:LearnCpp.ViewModels"
+             xmlns:tk="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:help="clr-namespace:LearnCpp.Helpers"
+             x:DataType="local:TaskViewModel"
+             Title="{Binding Title}"       
+             Background="{AppThemeBinding Dark={StaticResource BGdark}, Light={StaticResource TxtDark}}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem NavigationPage.BackButtonTitle="true"/>
+        <ToolbarItem IconImageSource="icon_a.png" Command="{Binding LoadMeaningsCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Label Text="{Binding Description}" Style="{StaticResource lectureTxt}" FontSize="18"/>
+
+                <StackLayout HeightRequest="200">
+                    <StackLayout Orientation="Vertical" HeightRequest="{Binding HeightTest}">
+
+                        <RadioButton Content="{Binding ValueOne}" TextColor="{AppThemeBinding Dark={StaticResource TxtDark}, Light={StaticResource TxtLight}}" IsChecked="{Binding CheckOne, Mode=TwoWay}" ControlTemplate="{StaticResource ThemeRadioTemplate}">
+                            <RadioButton.Behaviors>
+                                <tk:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding CheckValue}"   CommandParameter="{Binding ValueOne}"/>
+                            </RadioButton.Behaviors>
+                        </RadioButton>
+
+                        <RadioButton Content="{Binding ValueTwo}" TextColor="{AppThemeBinding Dark={StaticResource TxtDark}, Light={StaticResource TxtLight}}"
+                                     IsChecked="{Binding CheckOne, Mode=TwoWay}" ControlTemplate="{StaticResource ThemeRadioTemplate}">
+                            <RadioButton.Behaviors>
+                                <tk:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding CheckValue}"   CommandParameter="{Binding ValueTwo}"/>
+                            </RadioButton.Behaviors>
+                        </RadioButton>
+
+                        <RadioButton Content="{Binding ValueThree}" TextColor="{AppThemeBinding Dark={StaticResource TxtDark}, Light={StaticResource TxtLight}}"
+                                     IsChecked="{Binding CheckTwo, Mode=TwoWay}" ControlTemplate="{StaticResource ThemeRadioTemplate}">
+                            <RadioButton.Behaviors>
+                                <tk:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding CheckValue}"   CommandParameter="{Binding ValueThree}"/>
+                            </RadioButton.Behaviors>
+                        </RadioButton>
+
+                        <RadioButton Content="{Binding ValueFour}" TextColor="{AppThemeBinding Dark={StaticResource TxtDark}, Light={StaticResource TxtLight}}"
+                                     IsChecked="{Binding CheckFour, Mode=TwoWay}" ControlTemplate="{StaticResource ThemeRadioTemplate}">
+                            <RadioButton.Behaviors>
+                                <tk:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding CheckValue}" CommandParameter="{Binding ValueFour}"/>
+                            </RadioButton.Behaviors>
+                        </RadioButton>
+                    </StackLayout>
+
+                    <ScrollView HeightRequest="{Binding HeightTask}">
+                        <Frame Style="{StaticResource boxes}" WidthRequest="330" HeightRequest="{Binding HeightTask}">
+                            <help:CustomEditor FontSize="18" TextColor="{AppThemeBinding Dark={StaticResource TxtDark}, 
+                            Light={StaticResource TxtLight}}" Text="{Binding TaskText}"/>
+                        </Frame>
+                    </ScrollView>
+
+                </StackLayout>
+
+                <Label Style="{StaticResource topicTxt}" Text="{Binding TaskResult}" BackgroundColor="{Binding ResultColor}"/>
+
+                <Button Text="{Binding BtnTxt}" Style="{StaticResource mainBtn}" Command="{Binding ResultBtn}"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

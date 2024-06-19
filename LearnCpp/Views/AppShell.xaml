@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:LearnCpp.Views"
+       Title="LearnCpp"
+       x:Class="LearnCpp.Views.AppShell">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding 
+                    Dark={StaticResource HeaderDark}, 
+                    Light={StaticResource Header}}" />
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource Accent}" />
+                <Setter Property="Shell.TitleColor" Value="{AppThemeBinding 
+                    Dark={StaticResource Accent}, 
+                    Light={StaticResource Txt}}"/>
+                <Setter Property="Shell.DisabledColor" Value="{AppThemeBinding 
+                    Dark={StaticResource Primary}, 
+                    Light={StaticResource Unselected}}" />
+                <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding 
+                    Dark={StaticResource Primary}, 
+                    Light={StaticResource Unselected}}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding 
+                    Dark={StaticResource HeaderDark}, 
+                    Light={StaticResource Header}}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Accent}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding 
+                    Dark={StaticResource Primary}, 
+                    Light={StaticResource Unselected}}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Accent}"/>
+            </Style>
+
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}"/>
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}"/>
+
+            <Style ApplyToDerivedTypes="True" Class="FlyoutItemLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Courier New"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+        <ShellContent Title="Главная" Icon="icon_main.png" ContentTemplate="{DataTemplate local:MainPage}"/>
+        <ShellContent Title="Библиотека" Icon="icon_book.png" ContentTemplate="{DataTemplate local:LibraryTabPage}" />
+        <ShellContent Title="Успеваемость" Icon="icon_progress.png" ContentTemplate="{DataTemplate local:ProgressPage}" />
+        <ShellContent Title="Избранное" Icon="icon_heart.png" ContentTemplate="{DataTemplate local:WordsPage}" />
+    </TabBar>
+   
+</Shell>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="launcher_background">#E0DFFD</color>
+    <color name="colorPrimary">#E0DFFD</color>
+    <color name="colorPrimaryDark">#46467A</color>
+    <color name="colorAccent">#7766C6</color>
+
+	<color name="ListViewSelected">@color/mtrl_btn_transparent_bg_color</color>
+</resources>

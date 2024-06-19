@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="LearnCpp.Views.LibraryTabPage"
+            xmlns:page="clr-namespace:LearnCpp.Views"
+            SelectedTabColor="{StaticResource Accent}"
+            UnselectedTabColor="{AppThemeBinding Dark={StaticResource Primary}, Light={StaticResource Unselected}}"
+            Title="Библиотека"
+            Background="{AppThemeBinding Dark={StaticResource BGdark}, Light={StaticResource TxtDark}}"
+           BarBackgroundColor="{AppThemeBinding Dark={StaticResource HeaderDark}, Light={StaticResource Header}}">
+
+    <page:LecturesListPage BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderDark}, Light={StaticResource Header}}"/>
+    <page:TasksListPage BackgroundColor="{AppThemeBinding Dark={StaticResource HeaderDark}, Light={StaticResource Header}}"/>
+</TabbedPage>

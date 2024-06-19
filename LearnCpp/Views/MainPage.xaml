@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnCpp.Views.MainPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:LearnCpp.ViewModels"
+             xmlns:model="clr-namespace:LearnCpp.Models"
+             xmlns:sb="clr-namespace:LearnCpp.Helpers"
+             Background="{AppThemeBinding Dark={StaticResource BGdark}, Light={StaticResource TxtDark}}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="icon_gear.png" Command="{Binding LoadSettingsCommand}" x:DataType="local:MainViewModel"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="10" x:DataType="local:MainViewModel">
+
+            <Frame Style="{StaticResource boxes}" CornerRadius="20" WidthRequest="500" MinimumHeightRequest="100">
+                <sb:CustomSerachBar Text="{Binding SearchText}" SearchCommand="{Binding SearchCommand}" Style="{StaticResource searchBox}"
+                                    CancelButtonColor="{StaticResource Accent}"/>
+            </Frame>
+
+            <!-- В этом контейнере последние просмотренные слова и лекция-->
+            <RefreshView x:DataType="local:MainViewModel" Command="{Binding LoadLastInfo}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" HeightRequest="{Binding HeightLast}">
+                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" Padding="10">
+                        <Label Text="Последняя просмотренная лекция" Style="{StaticResource topicTxt}"/>
+                        <Button Style="{StaticResource choiceBtn}" HeightRequest="70"
+                            Text="{Binding LectureLast}" Command="{Binding TapLecture}" 
+                                  CommandParameter="{Binding LectureLast}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" Padding="10">
+                        <Label Text="Недавно просмотренные слова" Style="{StaticResource topicTxt}"/>
+                        <ListView x:Name="recentlyDictionary" ItemsSource="{Binding Meanings}" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout x:DataType="model:Meaning" VerticalOptions="Center" Padding="10">
+                                            <Label Text="{Binding  word.Word}" Style="{StaticResource lectureTxt}"/>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainViewModel}}, Path=MeaningTapped}"		
+                                            CommandParameter="{Binding .}">
+                                                </TapGestureRecognizer>
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+                </StackLayout>
+            </RefreshView>
+
+            <!--В данном контейнере списки с результатами поиска-->
+            <StackLayout Orientation="Vertical" HeightRequest="{Binding HeightSearch}">
+                
+                <Label Text="Найденные слова" Style="{StaticResource topicTxt}"/>
+                <Label Text="Слова не найдены" HeightRequest="{Binding NotWordResult}" Style="{StaticResource titleTxt}"/>
+
+                <ListView ItemsSource="{Binding searchMeaning}" SeparatorVisibility="Default" HasUnevenRows="True" HeightRequest="{Binding FoundWord}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout x:DataType="model:Meaning" Padding="10">
+                                    <Label Text="{Binding word.Word}" Style="{StaticResource lectureTxt}"/>
+                                    <Label Text="{Binding meaningWord.Word}" Style="{StaticResource normalTxt}" HorizontalOptions="Start"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer  Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainViewModel}}, Path=MeaningTapped}"		
+                                     CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Label Text="Найденные лекции" Style="{StaticResource topicTxt}"/>
+                <Label Text="Лекции не найдены" HeightRequest="{Binding NotLectureResult}" Style="{StaticResource titleTxt}"/>
+                
+                <ListView ItemsSource="{Binding searchLecture}" SeparatorVisibility="Default" HeightRequest="{Binding FoundLecture}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout x:DataType="model:Lecture" Padding="10">
+                                    <Label Text="{Binding LectureTopic}" Style="{StaticResource lectureTxt}"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer  Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainViewModel}}, Path=LectureTapped}"		
+                                                         CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

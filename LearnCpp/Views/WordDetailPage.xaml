@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnCpp.Views.WordDetailPage"       Background="{AppThemeBinding 
+Dark={StaticResource BGdark}, 
+Light={StaticResource TxtDark}}">
+
+    <StackLayout Spacing="20" Padding="15" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <Label Text="{Binding Word}" Style="{StaticResource titleTxt}" FontSize="25" FontAttributes="Bold"/>
+        <Label Text="{Binding WordMeaning}" Style="{StaticResource normalTxt}" FontSize="20"/>
+        <Button Text="{Binding BtnTxt}" Style="{StaticResource mainBtn}" Command="{Binding FavoriteBtn}"/>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnCpp.Views.LecturesListPage"
+             xmlns:model="clr-namespace:LearnCpp.Models"
+             xmlns:vm="clr-namespace:LearnCpp.ViewModels"
+             Title="{Binding Title}"       Background="{AppThemeBinding 
+Dark={StaticResource BGdark}, 
+Light={StaticResource TxtDark}}">
+    
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding LectureList}"
+                  IsGroupingEnabled="True" SeparatorVisibility="Default">
+
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout VerticalOptions="Center" Padding="5,0">
+                            <Label Text="{Binding Path=Key}" Style="{StaticResource topicTxt}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout x:DataType="model:LectureByTopic" VerticalOptions="Center" Padding="10">
+                            <Label Text="{Binding lecture.LectureTopic}" Style="{StaticResource lectureTxt}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding Source={RelativeSource AncestorType={x:Type vm:LectureListViewModel}}, Path=TapLecture}"		
+                                                       CommandParameter="{Binding lecture}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

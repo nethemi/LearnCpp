@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:vm="clr-namespace:LearnCpp.ViewModels"
+             x:Class="LearnCpp.Views.SettingPage"
+             Title="{Binding Title}"
+             Background="{AppThemeBinding 
+                    Dark={StaticResource BGdark}, 
+                    Light={StaticResource TxtDark}}">
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" Padding="10">
+                <Label Text="Внешний вид" Style="{StaticResource titleTxt}" HorizontalOptions="Start"/>
+                <Label Text="Тема" Style="{StaticResource lectureTxt}" FontSize="18"/>
+
+                <RadioButton Content="По умолчанию" TextColor="{AppThemeBinding Dark={StaticResource TxtDark}, Light={StaticResource TxtLight}}"
+                             IsChecked="{Binding DefaultTheme, Mode=TwoWay}" ControlTemplate="{StaticResource ThemeRadioTemplate}">
+                    <RadioButton.Behaviors>
+                        <local:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding SwitchThemeCommand}"   CommandParameter="0"/>
+                    </RadioButton.Behaviors>
+                </RadioButton>
+
+                <RadioButton Content="Светлая" TextColor="{AppThemeBinding Dark={StaticResource TxtDark}, Light={StaticResource TxtLight}}"
+                             IsChecked="{Binding LightTheme, Mode=TwoWay}" ControlTemplate="{StaticResource ThemeRadioTemplate}">
+                    <RadioButton.Behaviors>
+                        <local:EventToCommandBehavior EventName="CheckedChanged" Command="{Binding SwitchThemeCommand}"  CommandParameter="1"/>
+                    </RadioButton.Behaviors>
+                </RadioButton>
+
+                <RadioButton Content="Темная" TextColor="{AppThemeBinding Dark={StaticResource TxtDark}, Light={StaticResource TxtLight}}"
+                             IsChecked="{Binding DarkTheme, Mode=TwoWay}" ControlTemplate="{StaticResource ThemeRadioTemplate}">
+                    <RadioButton.Behaviors>
+                        <local:EventToCommandBehavior EventName="CheckedChanged"
+                                                      Command="{Binding SwitchThemeCommand}"
+                                                      CommandParameter="2"/>
+                    </RadioButton.Behaviors>
+                </RadioButton>
+            </StackLayout>
+            <BoxView Style="{StaticResource Separator}" />
+            
+            <StackLayout Orientation="Vertical" Padding="10">
+                <Label Text="Юридическая информация" Style="{StaticResource titleTxt}" HorizontalOptions="Start"/>
+                <Button Text="Условия использования" Style="{StaticResource settingBtn}" Margin="-5" Command="{Binding UseTermsCommand}"/>
+                <Button Text="Пользовательское соглашение" Style="{StaticResource settingBtn}" Margin="-5" Command="{Binding AgreementCommand}"/>
+                <Button Text="Политика конфиденциальности" Style="{StaticResource settingBtn}" Margin="-5" Command="{Binding PrivacyPolicyCommand}"/>
+            </StackLayout>
+            <BoxView Style="{StaticResource Separator}" />
+            
+            <StackLayout Orientation="Vertical" Padding="10">
+                <Label Text="О программе" Style="{StaticResource titleTxt}" HorizontalOptions="Start"/>
+                <Label Text="Версия 1.1.0" Style="{StaticResource lectureTxt}" Margin="10,0"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

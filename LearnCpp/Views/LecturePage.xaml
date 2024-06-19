@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LearnCpp.Views.LecturePage"
+             xmlns:local="clr-namespace:LearnCpp.ViewModels"
+             Title="{Binding Title}"
+             Background="{AppThemeBinding Dark={StaticResource BGdark}, Light={StaticResource TxtDark}}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem NavigationPage.BackButtonTitle="true"/>
+        <ToolbarItem IconImageSource="icon_a.png" Command="{Binding LoadMeaningsCommand}" x:DataType="local:LectureViewModel"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <WebView x:Name="web" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  x:DataType="local:LectureViewModel" Source="{Binding viewSource}"/>
+    </ContentPage.Content>
+</ContentPage>
